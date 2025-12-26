@@ -1,0 +1,258 @@
+/* Smooth scroll ke liye ye sab se upar hona chahiye */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+    url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1920');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background: #2c3e50;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10%;
+    position: sticky; /* Taake scroll ke waqt navbar upar hi rahe */
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li { margin-left: 20px; }
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.nav-links a:hover {
+    transform: scale(1.2);
+    color: #3498db;
+}
+
+/* Sections Styling */
+section {
+    min-height: auto; /* Yeh extra khali jagah khatam kar dega */
+    padding: 60px 10%; /* Upper aur lower gap ko thora kam kiya hai */
+    overflow: hidden;
+}
+
+.about-section {
+    padding-bottom: 20px; 
+}
+
+.contact-section {
+    padding-top: 20px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* Gallery Styling */
+.gallery-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap; /* Mobile par images niche aa jayengi */
+}
+
+/* Gallery Card ki settings */
+.gallery-card {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s ease; /* Card ki movement smooth karne ke liye */
+    cursor: pointer;
+}
+
+/* Image ki default state */
+.gallery-card img, .gallery-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none; /* Black & White effect khatam */
+    transition: transform 0.6s ease;
+}
+
+/* --- HOVER EFFECTS (Jab Cursor Upar Aaye) --- */
+
+/* 1. Card thora upar uthega aur glow karega */
+.gallery-card:hover {
+    transform: translateY(-10px); /* Card ko 10px upar move karega */
+    box-shadow: 0 15px 35px rgba(52, 152, 219, 0.5); /* Blue glow effect */
+    border-color: #3498db;
+}
+
+/* 2. Image/Video zoom hogi */
+.gallery-card:hover img, .gallery-card:hover video {
+    transform: scale(1.15); /* 15% zoom */
+}
+
+/* 3. Overlay (Text) halke se zahir hoga */
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Overlay poora card cover karega */
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Text bottom par show ho */
+    align-items: center;
+    opacity: 0; /* Default hidden */
+    transition: opacity 0.4s ease;
+    padding: 20px;
+    text-align: center;
+}
+
+.gallery-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #3498db;
+}
+
+.card-overlay p {
+    font-size: 0.9rem;
+    color: #eee;
+}
+
+/* Decorative Lines Styling */
+.divider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 15px;
+}
+
+.glow-line {
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #3498db, transparent);
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+    border-radius: 50px;
+}
+
+.diamond-icon {
+    color: #3498db;
+    font-size: 24px;
+    text-shadow: 0 0 15px #3498db;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* About Section Styling */
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.about-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /* Image ko round karne ke liye */
+    border: 5px solid #3498db;
+    object-fit: cover;
+}
+
+.highlight {
+    color: #3498db;
+    font-size: 3.5rem;
+}
+
+/* Contact Section Styling */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    width: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: 0.4s;
+    text-align: center;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    border-color: #3498db;
+    box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+}
+
+.contact-card .icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.contact-card h3 {
+    margin-bottom: 10px;
+    color: #3498db;
+}
+
+.contact-card p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.contact-btn {
+    text-decoration: none;
+    color: white;
+    background: #3498db;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background: #2980b9;
+}
